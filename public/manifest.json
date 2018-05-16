@@ -1,0 +1,10 @@
+{
+  "short_name": "GDE Social",
+  "name": "Google Developer Experts Social",
+  "icons": [],
+  "start_url": "/",
+  "background_color": "#fff",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#fff"
+}
