@@ -1,0 +1,18 @@
+<header>
+  <content>
+    <h1>Web GDE Social</h1>
+    <p><a href="https://twitter.com/robertnyman/lists/web-gdes/">Recent tweets</a> from <a href="https://developers.google.com/experts/all/technology/web-technologies">Web Technology</a> <a href="https://developers.google.com/experts">Google Developer Experts</a>.</p>
+  </content>
+</header>
+
+<content>
+{{#each tweets}}
+    <twitter-status status='{{json this}}'></twitter-status>
+{{/each}}
+</content>
+
+<footer>
+  <content>
+    <p><a href="https://github.com/abraham/gde-social">Built</a> by <a href="https://abrah.am">Abraham Williams</a> with the <a href="https://developer.twitter.com/">Twitter API</a>, <a href="https://www.npmjs.com/package/twitter-status">twitter-status web component</a>, and <a href="https://firebase.google.com/">Firebase</a>.</p>
+  </content>
+</footer>
