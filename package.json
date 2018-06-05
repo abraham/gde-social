@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/abraham/gde-social#readme",
   "devDependencies": {
-    "request": "^2.86.0"
+    "request": "2.86.0"
   }
 }
