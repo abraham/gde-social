@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "bearer": "node scripts/bearer.js",
-    "start": "firebase serve"
+    "start": "firebase serve",
+    "update-documents": "npx ts-node scripts/update-documents.ts"
   },
   "repository": {
     "type": "git",

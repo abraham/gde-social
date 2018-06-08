@@ -4,3 +4,4 @@ node_modules
 functions/lib
 firebase-debug.log
 appengine/lib
+lib
