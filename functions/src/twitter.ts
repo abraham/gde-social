@@ -44,3 +44,7 @@ function buildClient(credentials: TwitterCredentials): Twit {
 export function convertDate(date: string): number {
   return new Date(Date.parse(date.replace(/( \+)/, ' UTC$1'))).getTime();
 }
+
+export function parseHashtags(status: Status): string[] {
+  return status.entities.hashtags.map(hashtag => hashtag.text);
+}

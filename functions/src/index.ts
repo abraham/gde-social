@@ -3,7 +3,7 @@ import * as exphbs from 'express-handlebars';
 import * as express from 'express';
 import * as functions from 'firebase-functions';
 
-import { Status, TwitterClient, convertDate } from './twitter';
+import { Status, TwitterClient, convertDate, parseHashtags } from './twitter';
 
 admin.initializeApp();
 
@@ -39,6 +39,7 @@ exports.update_statuses = functions.pubsub.topic('five-minute-tick').onPublish(a
 function setStatus(status: Status) {
   return db.collection('statuses').doc(status.id_str).set({
     data: JSON.stringify(status),
+    hashtags: parseHashtags(status),
     updatedAt: Date.now(),
     createdAt: convertDate(status.created_at)
   })
