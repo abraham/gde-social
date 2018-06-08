@@ -19,7 +19,7 @@ app.engine('handlebars', exphbs({
   }
 }));
 
-app.get('/', async (request, response) => {
+app.get('/', async (_request, response) => {
   const snaps = await db.collection('statuses').limit(25).orderBy('createdAt', 'desc').get();
   response.set('Cache-Control', 'public, max-age=300, s-maxage=300');
   response.render('index', {
@@ -29,7 +29,7 @@ app.get('/', async (request, response) => {
 
 exports.app = functions.https.onRequest(app);
 
-exports.update_statuses = functions.pubsub.topic('five-minute-tick').onPublish(async (event) => {
+exports.update_statuses = functions.pubsub.topic('five-minute-tick').onPublish(async (_event) => {
   const tweets = await twitter.getTweets(200);
   console.log(`Updating ${tweets.length} statuses`);
   return Promise.all(tweets.map(setStatus))
