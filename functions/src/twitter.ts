@@ -46,5 +46,5 @@ export function convertDate(date: string): number {
 }
 
 export function parseHashtags(status: Status): string[] {
-  return status.entities.hashtags.map(hashtag => hashtag.text);
+  return status.entities.hashtags.map(hashtag => hashtag.text.toLowerCase());
 }
