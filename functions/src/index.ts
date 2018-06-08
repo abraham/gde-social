@@ -5,7 +5,7 @@ import * as functions from 'firebase-functions';
 
 import { Status, TwitterClient, convertDate } from './twitter';
 
-admin.initializeApp(functions.config().firebase);
+admin.initializeApp();
 
 const app = express();
 const db = admin.firestore();
