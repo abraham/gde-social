@@ -12,26 +12,29 @@ const db = admin.firestore();
 const twitter = TwitterClient(functions.config().twitter);
 
 app.set('view engine', 'handlebars');
-app.engine('handlebars', exphbs({
-  defaultLayout: 'index',
-  helpers: {
-    json: (data: any) => JSON.stringify(data)
-  }
-}));
+app.engine('handlebars', exphbs({ defaultLayout: 'index', }));
 
 app.get('/', async (_request, response) => {
-  const snaps = await db.collection('statuses').limit(25).orderBy('createdAt', 'desc').get();
-  response.set('Cache-Control', 'public, max-age=300, s-maxage=300');
-  response.render('index', {
-    tweets: snaps.docs.map(snap => snap.data()),
-  });
+  const snaps = await db.collection('statuses')
+    .orderBy('createdAt', 'desc')
+    .limit(50).get();
+  render(response, snaps);
+});
+
+
+app.get('/hashtag/:hashtag', async (request, response) => {
+  const hashtag = request.params.hashtag;
+  const snaps = await db.collection('statuses')
+    .where(`hashtags.${hashtag}`, '>', 0)
+    .orderBy(`hashtags.${hashtag}`, 'desc')
+    .limit(50).get();
+  render(response, snaps);
 });
 
 exports.app = functions.https.onRequest(app);
 
 exports.update_statuses = functions.pubsub.topic('five-minute-tick').onPublish(async (_event) => {
   const tweets = await twitter.getTweets(200);
-  console.log(`Updating ${tweets.length} statuses`);
   return Promise.all(tweets.map(setStatus))
     .catch(error => console.error(new Error(`ERROR saving all, ${error}`)));
 });
@@ -44,4 +47,25 @@ function setStatus(status: Status) {
     createdAt: convertDate(status.created_at)
   })
   .catch(error => console.error(new Error(`ERROR saving ${status.id_str}, ${error}`)));
+}
+
+function render(response: express.Response, snaps: FirebaseFirestore.QuerySnapshot) {
+  const statuses = snaps.docs.map(snap => snap.data())
+  response.set('Cache-Control', 'public, max-age=300, s-maxage=300');
+  response.render('index', {
+    statuses,
+    hashtags: getHashtags(statuses),
+  });
+}
+
+function getHashtags(statuses: FirebaseFirestore.DocumentData[]): string[] {
+  const hashtags: string[] = [];
+  statuses.forEach(status => {
+    Object.keys(status.hashtags).forEach((hashtag: string) => {
+      if (!hashtags.includes(hashtag)) {
+        hashtags.push(hashtag);
+      }
+    })
+  });
+  return hashtags;
 }

@@ -1,13 +1,27 @@
 html, body {
   margin: 0;
   width: 100%;
+  height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
-content {
+body {
+  display: inline-flex;
+}
+
+#container {
+  width: 100%;
+}
+
+main {
   margin: 0 auto;
   max-width: 600px;
   display: block;
+}
+
+footer, #intro {
+  padding: 24px;
+  text-align: center;
 }
 
 twitter-status {

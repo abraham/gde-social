@@ -17,6 +17,10 @@
       {
         "source": "/",
         "function": "app"
+      },
+      {
+        "source": "/hashtag/**",
+        "function": "app"
       }
     ],
     "headers": [
