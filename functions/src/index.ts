@@ -17,7 +17,7 @@ app.engine('handlebars', exphbs({ defaultLayout: 'index', }));
 app.get('/', async (_request, response) => {
   const snaps = await db.collection('statuses')
     .orderBy('createdAt', 'desc')
-    .limit(50).get();
+    .limit(100).get();
   render(response, snaps);
 });
 
@@ -27,7 +27,7 @@ app.get('/hashtag/:hashtag', async (request, response) => {
   const snaps = await db.collection('statuses')
     .where(`hashtags.${hashtag}`, '>', 0)
     .orderBy(`hashtags.${hashtag}`, 'desc')
-    .limit(50).get();
+    .limit(100).get();
   render(response, snaps);
 });
 
@@ -40,11 +40,18 @@ exports.update_statuses = functions.pubsub.topic('five-minute-tick').onPublish(a
 });
 
 function setStatus(status: Status) {
+  const createdAt = convertDate(status.created_at);
+  const sortableHashtags = parseHashtags(status)
+    .reduce((hashtags: any, hashtag: string) => {
+    hashtags[hashtag] = createdAt;
+    return hashtags;
+  }, {});
+
   return db.collection('statuses').doc(status.id_str).set({
     data: JSON.stringify(status),
-    hashtags: parseHashtags(status),
+    hashtags: sortableHashtags,
     updatedAt: Date.now(),
-    createdAt: convertDate(status.created_at)
+    createdAt,
   })
   .catch(error => console.error(new Error(`ERROR saving ${status.id_str}, ${error}`)));
 }
@@ -53,7 +60,7 @@ function render(response: express.Response, snaps: FirebaseFirestore.QuerySnapsh
   const statuses = snaps.docs.map(snap => snap.data())
   response.set('Cache-Control', 'public, max-age=300, s-maxage=300');
   response.render('index', {
-    statuses,
+    statuses: statuses.slice(0, 25),
     hashtags: getHashtags(statuses),
   });
 }
