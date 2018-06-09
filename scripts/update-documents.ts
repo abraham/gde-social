@@ -10,6 +10,7 @@ admin.initializeApp();
 const db = admin.firestore();
 
 async function updateAll() {
+  // TODO: paginate https://firebase.google.com/docs/firestore/query-data/query-cursors#paginate_a_query
   const query = await db.collection('statuses').where('version', '<', CURRENT_VERSION).get();
   let skipped = 0;
   let migrated = 0;
