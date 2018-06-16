@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bearer": "node scripts/bearer.js",
+    "bearer": "ts-node scripts/bearer.ts",
     "start": "firebase serve",
-    "update-documents": "npx ts-node scripts/update-documents.ts"
+    "update-documents": "ts-node scripts/update-documents.ts"
   },
   "repository": {
     "type": "git",
@@ -24,9 +24,11 @@
   },
   "homepage": "https://github.com/abraham/gde-social#readme",
   "devDependencies": {
+    "@types/request-promise-native": "^1.0.15",
     "firebase-admin": "5.12.1",
     "firebase-tools": "3.18.6",
     "request": "2.87.0",
+    "request-promise-native": "1.0.5",
     "ts-node": "6.1.1",
     "typescript": "2.9.2"
   }
