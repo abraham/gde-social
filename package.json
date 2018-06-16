@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "bearer": "ts-node scripts/bearer.ts",
     "start": "firebase serve",
-    "update-documents": "ts-node scripts/update-documents.ts"
+    "update-documents": "ts-node scripts/update-documents.ts",
+    "copy-data": "ts-node scripts/copy-data.ts"
   },
   "repository": {
     "type": "git",
