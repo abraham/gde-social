@@ -14,13 +14,18 @@ const db = admin.firestore();
 const twitter = TwitterClient(functions.config().twitter);
 
 app.set('view engine', 'handlebars');
-app.engine('handlebars', exphbs({ defaultLayout: 'index', }));
+app.engine('handlebars', exphbs({
+  defaultLayout: 'index',
+  helpers: {
+    mdcActivatedClass: (a: string, b: string): string => a === b ? 'mdc-list-item--activated' : '',
+  }
+}));
 
 app.get('/', async (_request, response) => {
   const snaps = await db.collection('statuses')
     .orderBy('createdAt', 'desc')
     .limit(100).get();
-  render(response, snaps);
+  render(response, snaps, 'index');
 });
 
 app.get('/links', async (_request, response) => {
@@ -28,16 +33,16 @@ app.get('/links', async (_request, response) => {
     .orderBy(`createdAt`, 'desc')
     .where(`hasLinks`, '==', true)
     .limit(100).get();
-  render(response, snaps);
+  render(response, snaps, 'links');
 });
 
 app.get('/hashtag/:hashtag', async (request, response) => {
-  const hashtag = request.params.hashtag;
+  const hashtag = request.params.hashtag.toLowerCase().trim();
   const snaps = await db.collection('statuses')
     .where(`hashtags.${hashtag}`, '>', 0)
     .orderBy(`hashtags.${hashtag}`, 'desc')
     .limit(100).get();
-  render(response, snaps);
+  render(response, snaps, hashtag);
 });
 
 exports.app = functions.https.onRequest(app);
@@ -55,12 +60,13 @@ function setStatus(tweet: Status) {
   .catch(error => console.error(new Error(`ERROR saving ${tweet.id_str}, ${error}`)));
 }
 
-function render(response: express.Response, snaps: FirebaseFirestore.QuerySnapshot) {
+function render(response: express.Response, snaps: FirebaseFirestore.QuerySnapshot, routeName: string) {
   const statuses = snaps.docs.map(snap => snap.data())
   response.set('Cache-Control', 'public, max-age=300, s-maxage=300');
   response.render('index', {
     statuses: statuses.slice(0, 25),
     hashtags: getHashtags(statuses),
+    routeName,
   });
 }
 

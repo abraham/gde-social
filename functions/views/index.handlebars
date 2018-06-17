@@ -2,7 +2,7 @@
   <div class="mdc-top-app-bar__row">
     <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
       <a href="#" class="material-icons mdc-top-app-bar__navigation-icon">menu</a>
-      <span class="mdc-top-app-bar__title">Web GDE Social</span>
+      <a class="mdc-top-app-bar__title" href="/">Web GDE Social</a>
     </section>
   </div>
 </header>
@@ -15,11 +15,11 @@
       </div>
     </header>
     <nav id="icon-with-text-demo" class="mdc-drawer__content mdc-list">
-      <a class="mdc-list-item mdc-list-item--activatedx" href="/">All tweets</a>
-      <a class="mdc-list-item mdc-list-item--activatedx" href="/links">With links</a>
+      <a class="mdc-list-item {{mdcActivatedClass routeName 'index'}}" href="/">All tweets</a>
+      <a class="mdc-list-item {{mdcActivatedClass routeName 'links'}}" href="/links">With links</a>
       <hr class="mdc-list-divider">
       {{#each hashtags}}
-        <a class="mdc-list-item" href="/hashtag/{{this}}">#{{this}}</a>
+        <a class="mdc-list-item {{mdcActivatedClass ../routeName this}}" href="/hashtag/{{this}}">#{{this}}</a>
       {{/each}}
     </nav>
   </nav>
