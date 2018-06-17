@@ -19,6 +19,10 @@
         "function": "app"
       },
       {
+        "source": "/links",
+        "function": "app"
+      },
+      {
         "source": "/hashtag/**",
         "function": "app"
       }

@@ -23,6 +23,14 @@ app.get('/', async (_request, response) => {
   render(response, snaps);
 });
 
+app.get('/links', async (_request, response) => {
+  const snaps = await db.collection('statuses')
+    .orderBy(`createdAt`, 'desc')
+    .where(`hasLinks`, '==', true)
+    .limit(100).get();
+  render(response, snaps);
+});
+
 app.get('/hashtag/:hashtag', async (request, response) => {
   const hashtag = request.params.hashtag;
   const snaps = await db.collection('statuses')
