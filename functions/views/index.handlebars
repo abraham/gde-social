@@ -11,11 +11,13 @@
   <nav class="mdc-drawer__drawer">
     <header class="mdc-drawer__header">
       <div class="mdc-drawer__header-content">
-        #Hashtags
+        Filters
       </div>
     </header>
     <nav id="icon-with-text-demo" class="mdc-drawer__content mdc-list">
       <a class="mdc-list-item mdc-list-item--activatedx" href="/">All tweets</a>
+      <a class="mdc-list-item mdc-list-item--activatedx" href="/links">With links</a>
+      <hr class="mdc-list-divider">
       {{#each hashtags}}
         <a class="mdc-list-item" href="/hashtag/{{this}}">#{{this}}</a>
       {{/each}}
