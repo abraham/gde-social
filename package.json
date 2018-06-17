@@ -10,7 +10,8 @@
     "deploy:dev": "firebase use dev && firebase deploy",
     "deploy:prod": "firebase use prod && firebase deploy",
     "migrate": "ts-node scripts/migrate.ts",
-    "copy-data": "ts-node scripts/copy-data.ts"
+    "copy-data": "ts-node scripts/copy-data.ts",
+    "count": "ts-node scripts/count.ts"
   },
   "repository": {
     "type": "git",
