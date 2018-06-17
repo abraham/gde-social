@@ -6,7 +6,7 @@ admin.initializeApp();
 
 const db = admin.firestore();
 
-async function updateAll() {
+async function migrate() {
   // TODO: paginate https://firebase.google.com/docs/firestore/query-data/query-cursors#paginate_a_query
   const query = await db.collection('statuses').where('version', '<', version).get();
   let skipped = 0;
@@ -14,7 +14,7 @@ async function updateAll() {
 
   query.forEach(doc => {
     const data = doc.data();
-    const document = buildStatus(data.data);
+    const document = buildStatus(JSON.parse(data.data));
     migrated++;
     db.collection('statuses').doc(doc.id).set(document)
       .catch(error => {
@@ -26,4 +26,4 @@ async function updateAll() {
   console.log(`Skipped ${skipped}`);
 }
 
-updateAll();
+migrate();
