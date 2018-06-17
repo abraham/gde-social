@@ -7,23 +7,44 @@ admin.initializeApp();
 const db = admin.firestore();
 
 async function migrate() {
-  // TODO: paginate https://firebase.google.com/docs/firestore/query-data/query-cursors#paginate_a_query
-  const query = await db.collection('statuses').where('version', '<', version).get();
-  let skipped = 0;
+  let next = true;
+  let query = page();
   let migrated = 0;
 
-  query.forEach(doc => {
-    const data = doc.data();
-    const document = buildStatus(JSON.parse(data.data));
-    migrated++;
-    db.collection('statuses').doc(doc.id).set(document)
-      .catch(error => {
-        console.error(`ERROR saving ${doc.id}, ${error}`);
-      });
-  });
+  while (next) {
+    const snapshot = await query.get();
+    const lastDocument = snapshot.docs[snapshot.docs.length - 1];
+    console.log(`Updating ${snapshot.docs.length} documents`);
+
+    const batch = db.batch();
+    snapshot.forEach(document => {
+      migrated++;
+      batch.set(document.ref, buildStatus(JSON.parse(document.data().data)));
+    });
+    batch.commit();
+
+    if (snapshot.docs.length === 0) {
+      next = false;
+    } else {
+      query = page(lastDocument)
+    }
+  }
 
   console.log(`Migrated ${migrated}`);
-  console.log(`Skipped ${skipped}`);
+}
+
+function page(lastDocument?: FirebaseFirestore.QueryDocumentSnapshot): FirebaseFirestore.Query {
+  let query =  db.collection('statuses')
+    .orderBy('version')
+    .orderBy('createdAt')
+    .where('version', '<', version)
+    .limit(500);
+
+  if (lastDocument) {
+    query = query.startAfter(lastDocument.data().version, lastDocument.data().createdAt);
+  }
+
+  return query;
 }
 
 migrate();
