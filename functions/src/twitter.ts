@@ -24,12 +24,12 @@ const listParams = {
 export function TwitterClient(credentials: TwitterCredentials) {
   const client = buildClient(credentials);
   return {
-    getTweets: (count: number) => getTweets(client, count),
+    getTweets: (count: number, sinceId: string) => getTweets(client, count, sinceId),
   };
 }
 
-export async function getTweets(client: Twit, count: number): Promise<Status[]> {
-  const t = await client.get('lists/statuses', { ...listParams, count} as Twit.Params); // Twit.Params doesn't recognize owner_screen_name
+export async function getTweets(client: Twit, count: number, since_id: string): Promise<Status[]> {
+  const t = await client.get('lists/statuses', { ...listParams, count, since_id} as Twit.Params); // Twit.Params doesn't recognize owner_screen_name
   return t.data as Status[];
 }
 
