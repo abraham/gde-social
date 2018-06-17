@@ -3,9 +3,9 @@ import * as exphbs from 'express-handlebars';
 import * as express from 'express';
 import * as functions from 'firebase-functions';
 
-import { parseTweet } from './status';
-
 import { Status, TwitterClient } from './twitter';
+
+import { buildStatus } from './status';
 
 admin.initializeApp();
 
@@ -42,12 +42,9 @@ exports.update_statuses = functions.pubsub.topic('five-minute-tick').onPublish(a
     .catch(error => console.error(new Error(`ERROR saving all, ${error}`)));
 });
 
-function setStatus(status: Status) {
-  return db.collection('statuses').doc(status.id_str).set({
-    data: JSON.stringify(status),
-    ...parseTweet(status),
-  })
-  .catch(error => console.error(new Error(`ERROR saving ${status.id_str}, ${error}`)));
+function setStatus(tweet: Status) {
+  return db.collection('statuses').doc(tweet.id_str).set(buildStatus(tweet))
+  .catch(error => console.error(new Error(`ERROR saving ${tweet.id_str}, ${error}`)));
 }
 
 function render(response: express.Response, snaps: FirebaseFirestore.QuerySnapshot) {

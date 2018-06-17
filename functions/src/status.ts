@@ -1,6 +1,8 @@
 import { Status, convertDate, parseHashtags } from './twitter';
 
-export function parseTweet(status: Status) {
+export const version = 2;
+
+export function buildStatus(status: Status) {
   const createdAt = convertDate(status.created_at);
   const hashtags = parseHashtags(status)
     .reduce((sortableHashtags: any, hashtag: string) => {
@@ -15,5 +17,6 @@ export function parseTweet(status: Status) {
     hashtags,
     hasLinks,
     updatedAt: Date.now(),
+    version,
   }
 }

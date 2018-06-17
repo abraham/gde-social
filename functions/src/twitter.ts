@@ -1,4 +1,5 @@
 import * as Twit from 'twit';
+
 import { StatusData } from 'twitter-status/dist/status';
 
 export type Status = StatusData;
