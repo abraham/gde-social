@@ -3,7 +3,9 @@ import * as exphbs from 'express-handlebars';
 import * as express from 'express';
 import * as functions from 'firebase-functions';
 
-import { Status, TwitterClient, convertDate, parseHashtags } from './twitter';
+import { parseTweet } from './status';
+
+import { Status, TwitterClient } from './twitter';
 
 admin.initializeApp();
 
@@ -41,18 +43,9 @@ exports.update_statuses = functions.pubsub.topic('five-minute-tick').onPublish(a
 });
 
 function setStatus(status: Status) {
-  const createdAt = convertDate(status.created_at);
-  const sortableHashtags = parseHashtags(status)
-    .reduce((hashtags: any, hashtag: string) => {
-    hashtags[hashtag] = createdAt;
-    return hashtags;
-  }, {});
-
   return db.collection('statuses').doc(status.id_str).set({
     data: JSON.stringify(status),
-    hashtags: sortableHashtags,
-    updatedAt: Date.now(),
-    createdAt,
+    ...parseTweet(status),
   })
   .catch(error => console.error(new Error(`ERROR saving ${status.id_str}, ${error}`)));
 }
