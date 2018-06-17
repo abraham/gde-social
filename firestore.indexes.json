@@ -12,6 +12,19 @@
           "mode": "DESCENDING"
         }
       ]
+    },
+    {
+      "collectionId": "statuses",
+      "fields": [
+        {
+          "fieldPath": "version",
+          "mode": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdAt",
+          "mode": "ASCENDING"
+        }
+      ]
     }
   ]
 }
