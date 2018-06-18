@@ -11,7 +11,7 @@
   "types": ["@types/twitter"],
   "compileOnSave": true,
   "include": [
-    "src",
+    "web",
     "scripts",
     "appengine"
   ]
