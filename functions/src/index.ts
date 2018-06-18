@@ -49,7 +49,7 @@ exports.app = functions.https.onRequest(app);
 
 exports.update_statuses = functions.pubsub.topic('five-minute-tick').onPublish(async (_event) => {
   const latestId = await latestStatusId();
-  const tweets = await twitter.getTweets(200, latestId);
+  const tweets = await twitter.getListTweets(200, latestId);
   console.log(`Got ${tweets.length} tweets`);
   return Promise.all(tweets.map(setStatus))
     .catch(error => console.error(new Error(`ERROR saving all, ${error}`)));
