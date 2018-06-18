@@ -1,7 +1,7 @@
 {
   "name": "gde-social",
   "version": "1.0.0",
-  "description": "Show tweets from GDEs",
+  "description": "Show tweets from GDEs.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,6 +9,7 @@
     "start": "firebase serve",
     "deploy:dev": "firebase use dev && firebase deploy",
     "deploy:prod": "firebase use prod && firebase deploy",
+    "deploy:cron": "gcloud app deploy appengine/cron.yaml && gcloud app deploy appengine/app.yaml",
     "migrate": "ts-node scripts/migrate.ts",
     "copy-data": "ts-node scripts/copy-data.ts",
     "crawl-list": "ts-node scripts/crawl-list.ts",
