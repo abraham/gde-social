@@ -22,7 +22,7 @@
     "@types/express-handlebars": "0.0.30",
     "@types/twit": "2.2.13",
     "tslint": "5.10.0",
-    "twitter-status": "0.1.6",
+    "twitter-status": "0.2.0",
     "twitter-user": "0.1.4",
     "typescript": "2.9.2"
   },
