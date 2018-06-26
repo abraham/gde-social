@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@types/express-handlebars": "0.0.30",
-    "@types/twit": "2.2.14",
+    "@types/twit": "2.2.15",
     "tslint": "5.10.0",
     "twitter-status": "0.2.0",
     "twitter-user": "0.2.0",
