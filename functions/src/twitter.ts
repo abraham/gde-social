@@ -42,23 +42,20 @@ export function TwitterClient(credentials: TwitterCredentials) {
 }
 
 export async function getListMembers(client: Twit, count: number): Promise<User[]> {
-  // TODO: Remove `as` when https://github.com/DefinitelyTyped/DefinitelyTyped/pull/26622 is merged
-  const t = await client.get('lists/members', { ...listParams, count } as Twit.Params);
+  const t = await client.get('lists/members', { ...listParams, count });
   return (t.data as { users: User[]}).users;
 }
 
 export async function getListTweets(client: Twit, count: number, since_id: string): Promise<Status[]> {
-  // TODO: Remove `as` when https://github.com/DefinitelyTyped/DefinitelyTyped/pull/26622 is merged
-  const t = await client.get('lists/statuses', { ...listParams, count, since_id } as Twit.Params);
+  const t = await client.get('lists/statuses', { ...listParams, count, since_id });
   return t.data as Status[];
 }
 
 export async function getUserTweets(client: Twit, screen_name: string, count: number, max_id?: string): Promise<StatusData[]> {
-  let options: Twit.Params = { ...timelineParams, screen_name, count };
+  const options: Twit.Params = { ...timelineParams, screen_name, count};
   if (max_id) {
-    options = { ...options, max_id };
+    options.max_id =  max_id;
   }
-  // TODO: Switch to user_id when https://github.com/DefinitelyTyped/DefinitelyTyped/pull/26622 is merged
   const t = await client.get('statuses/user_timeline', options);
   return t.data as StatusData[];
 }
