@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as exphbs from 'express-handlebars';
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
+import { activatedClass as mdcActivatedClass } from './mdc';
 import { LIMIT } from './pagination';
 import { buildStatus } from './status';
 import { Status, TwitterClient } from './twitter';
@@ -15,9 +16,7 @@ const twitter = TwitterClient(functions.config().twitter);
 app.set('view engine', 'handlebars');
 app.engine('handlebars', exphbs({
   defaultLayout: 'index',
-  helpers: {
-    mdcActivatedClass: (a: string, b: string): string => a === b ? 'mdc-list-item--activated' : '',
-  }
+  helpers: { mdcActivatedClass }
 }));
 
 app.get('/', async (_request, response) => {
