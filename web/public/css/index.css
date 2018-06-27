@@ -34,15 +34,26 @@ twitter-status {
 }
 
 a, a:visited {
-  color: var(--mdc-theme-on-primary, #000);
+  color: var(--mdc-theme-on-primary) !important;
 }
 
 .mdc-top-app-bar {
-  color: var(--mdc-theme-on-primary, #000);
-  background-color: var(--mdc-theme-primary, #fff);
+  color: var(--mdc-theme-on-primary) !important;
+  background-color: var(--mdc-theme-primary) !important;
 }
 
 .mdc-list-item--activated {
-  color: var(--mdc-theme-on-secondary, #fff) !important;
-  background-color: var(--mdc-theme-secondary, #000);
+  color: var(--mdc-theme-on-secondary) !important;
+  background-color: var(--mdc-theme-secondary) !important;
+}
+
+.mdc-button {
+  color: var(--mdc-theme-on-primary) !important;
+  border-color: var(--mdc-theme-on-primary) !important;
+  border-radius: 8px;
+}
+
+#load-more {
+  display: block;
+  margin: 0 auto;
 }

@@ -28,8 +28,8 @@ app.get('/', async (_request, response) => {
 
 app.get('/links', async (_request, response) => {
   const snaps = await db.collection('statuses')
-    .orderBy(`createdAt`, 'desc')
-    .where(`hasLinks`, '==', true)
+    .orderBy('createdAt', 'desc')
+    .where('hasLinks', '==', true)
     .limit(100).get();
   render(response, snaps, 'links');
 });
@@ -59,12 +59,15 @@ function setStatus(tweet: Status) {
 }
 
 function render(response: express.Response, snaps: FirebaseFirestore.QuerySnapshot, routeName: string) {
-  const statuses = snaps.docs.map(snap => snap.data())
+  const results = snaps.docs.map(snap => snap.data())
+  const statuses = results.slice(0, LIMIT);
+  const oldestCreatedAt = statuses.length > 0 ? statuses[statuses.length - 1].createdAt : '';
   response.set('Cache-Control', 'public, max-age=300, s-maxage=300');
   response.render('index', {
-    statuses: statuses.slice(0, LIMIT),
-    hashtags: getHashtags(statuses),
+    hashtags: getHashtags(results),
+    oldestCreatedAt,
     routeName,
+    statuses,
   });
 }
 
