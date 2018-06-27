@@ -1,11 +1,9 @@
-import * as admin from 'firebase-admin';
-import * as exphbs from 'express-handlebars';
 import * as express from 'express';
+import * as exphbs from 'express-handlebars';
+import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
-
-import { Status, TwitterClient } from './twitter';
-
 import { buildStatus } from './status';
+import { Status, TwitterClient } from './twitter';
 
 admin.initializeApp();
 
