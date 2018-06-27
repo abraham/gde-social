@@ -13,6 +13,6 @@
   "include": [
     "web",
     "scripts",
-    "appengine"
+    "cron"
   ]
 }

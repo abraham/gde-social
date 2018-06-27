@@ -10,7 +10,7 @@
     "deploy": "firebase deploy",
     "deploy:functions": "firebase deploy --only functions",
     "deploy:hosting": "firebase deploy --only hosting",
-    "deploy:cron": "gcloud app deploy appengine/cron.yaml && gcloud app deploy appengine/app.yaml",
+    "deploy:cron": "gcloud app deploy cron/cron.yaml && gcloud app deploy cron/app.yaml",
     "migrate": "ts-node scripts/migrate.ts",
     "copy-data": "ts-node scripts/copy-data.ts",
     "crawl-list": "ts-node scripts/crawl-list.ts",

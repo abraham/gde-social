@@ -3,5 +3,5 @@ node_modules
 .firebaserc
 functions/lib
 firebase-debug.log
-appengine/lib
+cron/lib
 lib
