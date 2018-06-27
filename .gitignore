@@ -1,7 +1,5 @@
 node_modules
 .runtimeconfig.json
 .firebaserc
-functions/lib
 firebase-debug.log
-cron/lib
 lib
