@@ -22,7 +22,7 @@ app.engine('handlebars', exphbs({
 app.get('/', async (_request, response) => {
   const snaps = await db.collection('statuses')
     .orderBy('createdAt', 'desc')
-    .limit(100).get();
+    .limit(LIMIT).get();
   render(response, snaps, 'index');
 });
 
@@ -30,7 +30,7 @@ app.get('/links', async (_request, response) => {
   const snaps = await db.collection('statuses')
     .orderBy('createdAt', 'desc')
     .where('hasLinks', '==', true)
-    .limit(100).get();
+    .limit(LIMIT).get();
   render(response, snaps, 'links');
 });
 
@@ -39,7 +39,7 @@ app.get('/hashtag/:hashtag', async (request, response) => {
   const snaps = await db.collection('statuses')
     .where(`hashtags.${hashtag}`, '>', 0)
     .orderBy(`hashtags.${hashtag}`, 'desc')
-    .limit(100).get();
+    .limit(LIMIT).get();
   render(response, snaps, hashtag);
 });
 
@@ -59,12 +59,11 @@ function setStatus(tweet: Status) {
 }
 
 function render(response: express.Response, snaps: FirebaseFirestore.QuerySnapshot, routeName: string) {
-  const results = snaps.docs.map(snap => snap.data())
-  const statuses = results.slice(0, LIMIT);
+  const statuses = snaps.docs.map(snap => snap.data())
   const oldestCreatedAt = statuses.length > 0 ? statuses[statuses.length - 1].createdAt : '';
   response.set('Cache-Control', 'public, max-age=300, s-maxage=300');
   response.render('index', {
-    hashtags: getHashtags(results),
+    hashtags: getHashtags(statuses),
     oldestCreatedAt,
     routeName,
     statuses,
