@@ -4,10 +4,13 @@ html, body {
   height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 
-  --mdc-theme-on-primary: #000;
-  --mdc-theme-primary: #fff;
-  --mdc-theme-on-secondary: #fff;
-  --mdc-theme-secondary: #000;
+  --mdc-theme-primary: #000;
+  --mdc-theme-secondary: #fff;
+  --mdc-theme-background: #fff
+
+  --mdc-theme-on-primary: #fff;
+  --mdc-theme-on-secondary: #000;
+  --mdc-theme-on-surface: #000;
 }
 
 body {
@@ -33,23 +36,7 @@ twitter-status {
   margin: 8px;
 }
 
-a, a:visited {
-  color: var(--mdc-theme-on-primary) !important;
-}
-
-.mdc-top-app-bar {
-  color: var(--mdc-theme-on-primary) !important;
-  background-color: var(--mdc-theme-primary) !important;
-}
-
-.mdc-list-item--activated {
-  color: var(--mdc-theme-on-secondary) !important;
-  background-color: var(--mdc-theme-secondary) !important;
-}
-
 .mdc-button {
-  color: var(--mdc-theme-on-primary) !important;
-  border-color: var(--mdc-theme-on-primary) !important;
   border-radius: 8px;
 }
 
