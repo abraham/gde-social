@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as exphbs from 'express-handlebars';
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
+import { LIMIT } from './pagination';
 import { buildStatus } from './status';
 import { Status, TwitterClient } from './twitter';
 
@@ -62,7 +63,7 @@ function render(response: express.Response, snaps: FirebaseFirestore.QuerySnapsh
   const statuses = snaps.docs.map(snap => snap.data())
   response.set('Cache-Control', 'public, max-age=300, s-maxage=300');
   response.render('index', {
-    statuses: statuses.slice(0, 25),
+    statuses: statuses.slice(0, LIMIT),
     hashtags: getHashtags(statuses),
     routeName,
   });
