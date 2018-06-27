@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "bearer": "ts-node scripts/bearer.ts",
     "start": "firebase serve",
+    "deploy": "firebase deploy",
     "deploy:functions": "firebase deploy --only functions",
     "deploy:hosting": "firebase deploy --only hosting",
     "deploy:cron": "gcloud app deploy appengine/cron.yaml && gcloud app deploy appengine/app.yaml",
