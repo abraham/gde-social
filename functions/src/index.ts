@@ -75,7 +75,7 @@ function getHashtags(statuses: FirebaseFirestore.DocumentData[]): string[] {
       if (!hashtags.includes(hashtag)) {
         hashtags.push(hashtag);
       }
-    })
+    });
   });
   return hashtags;
 }
