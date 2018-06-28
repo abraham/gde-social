@@ -1,5 +1,4 @@
 import * as Twit from 'twit';
-
 import { StatusData } from 'twitter-status/dist/status';
 import { UserData } from 'twitter-user/dist/user';
 
@@ -7,8 +6,10 @@ export type Status = StatusData;
 export type User = UserData;
 
 export interface TwitterCredentials {
-  key: string;
-  secret: string;
+  consumer_key: string;
+  consumer_secret: string;
+  access_token: string;
+  access_token_secret: string;
 }
 
 export interface StatusRef {
@@ -62,8 +63,7 @@ export async function getUserTweets(client: Twit, screen_name: string, count: nu
 
 function buildClient(credentials: TwitterCredentials): Twit {
   return new Twit({
-    consumer_key: credentials.key,
-    consumer_secret: credentials.secret,
+    ...credentials,
     app_only_auth: true
   });
 }
