@@ -61,12 +61,14 @@ function setStatus(tweet: Status) {
 }
 
 function render(response: express.Response, snaps: FirebaseFirestore.QuerySnapshot, routeName: string) {
-  const statuses = snaps.docs.map(snap => snap.data())
+  const statuses = snaps.docs.map(snap => snap.data());
+  const newestCreatedAt = statuses.length > 0 ? statuses[0].createdAt : '0';
   const oldestCreatedAt = statuses.length > 0 ? statuses[statuses.length - 1].createdAt : '';
   response.set('Cache-Control', 'public, max-age=300, s-maxage=300');
   response.render('index', {
     hashtags: getHashtags(statuses),
     oldestCreatedAt,
+    newestCreatedAt,
     routeName,
     statuses,
   });

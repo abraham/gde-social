@@ -27,12 +27,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const btn = new LoadMore(document.querySelector('#load-more'));
   document.querySelector('#load-more').addEventListener('click', () => btn.loadNext());
+
+  btn.stream();
 });
 
-function renderStatus(status) {
+function appendStatus(data) {
   const ts = document.createElement('twitter-status');
-  ts.status = status;
+  ts.status = JSON.parse(data);
   document.querySelector('#statuses').append(ts);
+}
+
+function prependStatus(data) {
+  const ts = document.createElement('twitter-status');
+  ts.status = JSON.parse(data);
+  document.querySelector('#statuses').prepend(ts);
 }
 
 class LoadMore {
@@ -59,6 +67,30 @@ class LoadMore {
     }
   }
 
+  async stream() {
+    const route = this.route;
+    let query = this.collection;
+
+    if (route === 'index') {
+      query = query.orderBy('createdAt', 'asc');
+    } else if (route === 'links') {
+      query = query.orderBy('createdAt', 'asc')
+        .where('hasLinks', '==', true);
+    } else {
+      query = query.where(`hashtags.${route}`, '>', 0)
+        .orderBy(`hashtags.${route}`, 'asc');
+    }
+
+    query.startAfter(this.newestCreatedAt)
+      .onSnapshot(function(snapshot) {
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === 'added') {
+            prependStatus(change.doc.data().data);
+          }
+        });
+    });
+  }
+
   async loadNext() {
     if (this.btn.disabled) {
       return;
@@ -66,7 +98,7 @@ class LoadMore {
     this.loading = true;
     const statuses = await this.statuses(this.route);
     statuses.forEach(status => {
-      renderStatus(JSON.parse(status.data));
+      appendStatus(status.data);
     });
     if (statuses.length > 0) {
       this.oldestCreatedAt = statuses[statuses.length - 1].createdAt;
@@ -76,8 +108,16 @@ class LoadMore {
     }
   }
 
+  get collection() {
+    return db.collection('statuses');
+  }
+
   get oldestCreatedAt() {
     return Number(this.btn.dataset.oldestCreatedAt);
+  }
+
+  get newestCreatedAt() {
+    return Number(this.btn.dataset.newestCreatedAt);
   }
 
   get route() {
@@ -89,18 +129,16 @@ class LoadMore {
   }
 
   async statuses(route) {
-    let query = db.collection('statuses').limit(25);
+    let query = this.collection.limit(25);
 
     if (route === 'index') {
       query = query.orderBy('createdAt', 'desc')
         .startAfter(this.oldestCreatedAt);
     } else if (route === 'links') {
-      debugger;
       query = query.orderBy('createdAt', 'desc')
         .where('hasLinks', '==', true)
         .startAfter(this.oldestCreatedAt);
     } else {
-
       query = query.where(`hashtags.${route}`, '>', 0)
         .orderBy(`hashtags.${route}`, 'desc')
         .startAfter(this.oldestCreatedAt);
