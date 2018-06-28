@@ -1,0 +1,39 @@
+{
+  "name": "gde-social-stream",
+  "version": "1.0.0",
+  "description": "GDE Social stream service.",
+  "scripts": {
+    "deploy": "./scripts/deploy.sh",
+    "start": "ts-node app.ts",
+    "provision": "./scripts/provision.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/abraham/gde-social.git"
+  },
+  "keywords": [
+    "twitter",
+    "gde"
+  ],
+  "author": "Abraham Williams <4braham@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abraham/gde-social/issues"
+  },
+  "homepage": "https://github.com/abraham/gde-social#readme",
+  "devDependencies": {
+    "@types/google-cloud__pubsub": "^0.18.0",
+    "@types/twit": "^2.2.15",
+    "twitter-status": "^0.2.0",
+    "twitter-user": "^0.2.0"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "dependencies": {
+    "@google-cloud/pubsub": "^0.19.0",
+    "ts-node": "7.0.0",
+    "twit": "^2.2.10",
+    "typescript": "2.9.2"
+  }
+}
