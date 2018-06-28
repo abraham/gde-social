@@ -34,7 +34,7 @@ app.get('/links', async (_request, response) => {
   render(response, snaps, 'links');
 });
 
-app.get('/hashtag/:hashtag', async (request, response) => {
+app.get('/hashtag/:hashtag', async (request: express.Request, response: express.Response) => {
   const hashtag = request.params.hashtag.toLowerCase().trim();
   const snaps = await db.collection('statuses')
     .where(`hashtags.${hashtag}`, '>', 0)
@@ -44,14 +44,16 @@ app.get('/hashtag/:hashtag', async (request, response) => {
 });
 
 exports.app = functions.https.onRequest(app);
+exports.update_statuses = functions.pubsub.topic('fifteen-minute-tick').onPublish(getNewStatuses);
+exports.new_status = functions.pubsub.topic('new_status').onPublish(getNewStatuses);
 
-exports.update_statuses = functions.pubsub.topic('five-minute-tick').onPublish(async (_event) => {
+async function getNewStatuses(_message: functions.pubsub.Message, _context: functions.EventContext) {
   const latestId = await latestStatusId();
   const tweets = await twitter.getListTweets(200, latestId);
   console.log(`Got ${tweets.length} tweets`);
   return Promise.all(tweets.map(setStatus))
     .catch(error => console.error(new Error(`ERROR saving all, ${error}`)));
-});
+}
 
 function setStatus(tweet: Status) {
   return db.collection('statuses').doc(tweet.id_str).set(buildStatus(tweet))
