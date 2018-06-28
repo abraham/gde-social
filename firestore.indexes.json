@@ -17,6 +17,19 @@
       "collectionId": "statuses",
       "fields": [
         {
+          "fieldPath": "hasLinks",
+          "mode": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdAt",
+          "mode": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionId": "statuses",
+      "fields": [
+        {
           "fieldPath": "version",
           "mode": "ASCENDING"
         },
