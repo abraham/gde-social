@@ -3,7 +3,7 @@ import * as admin from 'firebase-admin';
 import { TwitterClient } from '../functions/src/twitter';
 import { buildStatus } from '../functions/src/status';
 
-const config = require('../functions/.runtimeconfig.json').twitter;
+const config = require('../.runtimeconfig.json').twitter;
 
 admin.initializeApp();
 

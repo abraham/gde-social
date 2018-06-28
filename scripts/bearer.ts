@@ -1,5 +1,5 @@
 import * as request from 'request-promise-native';
-const config = require('../functions/.runtimeconfig.json').twitter;
+const config = require('../.runtimeconfig.json').twitter;
 const credentials = Buffer.from(`${config.key}:${config.secret}`).toString('base64');
 const url = 'https://api.twitter.com/oauth2/token';
 
