@@ -11,12 +11,12 @@ app.get('/', (_request, response) => {
 
 app.get('/publish/:topic', async (request, response) => {
   const topic = request.params.topic.toLowerCase().trim();
-  const result = await publish(topic)
+  const result = await publish(topic);
 
   if (result) {
     response.status(200).send('Published').end();
   } else {
-    response.status(500).send('Invalid topic').end()
+    response.status(500).send('Invalid topic').end();
   }
 });
 

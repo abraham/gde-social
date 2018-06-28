@@ -9,10 +9,5 @@
     "strict": true
   },
   "types": ["@types/twitter"],
-  "compileOnSave": true,
-  "include": [
-    "src",
-    "scripts",
-    "cron"
-  ]
+  "compileOnSave": true
 }
