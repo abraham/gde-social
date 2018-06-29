@@ -22,18 +22,18 @@
   },
   "homepage": "https://github.com/abraham/gde-social#readme",
   "devDependencies": {
-    "@types/google-cloud__pubsub": "^0.18.0",
-    "@types/twit": "^2.2.15",
-    "twitter-status": "^0.2.0",
-    "twitter-user": "^0.2.0"
+    "@types/google-cloud__pubsub": "0.18.0",
+    "@types/twit": "2.2.15",
+    "twitter-status": "0.2.0",
+    "twitter-user": "0.2.0"
   },
   "engines": {
     "node": "8"
   },
   "dependencies": {
-    "@google-cloud/pubsub": "^0.19.0",
+    "@google-cloud/pubsub": "0.19.0",
     "ts-node": "7.0.0",
-    "twit": "^2.2.10",
+    "twit": "2.2.10",
     "typescript": "2.9.2"
   }
 }
