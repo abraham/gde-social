@@ -24,7 +24,7 @@
   "devDependencies": {
     "@types/google-cloud__pubsub": "0.18.0",
     "@types/twit": "2.2.15",
-    "twitter-status": "0.2.1",
+    "twitter-status": "0.2.2",
     "twitter-user": "0.2.0"
   },
   "engines": {
