@@ -12,6 +12,7 @@ admin.initializeApp();
 const app = express();
 const db = admin.firestore();
 const twitter = TwitterClient(functions.config().twitter);
+const suggestedHashtags = ['angular', 'perfmatters', 'polymer', 'pwa', 'webcomponents'];
 
 app.set('view engine', 'handlebars');
 app.engine('handlebars', exphbs({
@@ -66,7 +67,8 @@ function render(response: express.Response, snaps: FirebaseFirestore.QuerySnapsh
   const oldestCreatedAt = statuses.length > 0 ? statuses[statuses.length - 1].createdAt : '';
   response.set('Cache-Control', 'public, max-age=300, s-maxage=300');
   response.render('index', {
-    hashtags: getHashtags(statuses),
+    recentHashtags: getHashtags(statuses),
+    suggestedHashtags,
     oldestCreatedAt,
     newestCreatedAt,
     routeName,
