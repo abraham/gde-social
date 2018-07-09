@@ -14,7 +14,9 @@
     "migrate": "ts-node scripts/migrate.ts",
     "copy-data": "ts-node scripts/copy-data.ts",
     "crawl-list": "ts-node scripts/crawl-list.ts",
-    "count": "ts-node scripts/count.ts"
+    "count": "ts-node scripts/count.ts",
+    "dump": "ts-node scripts/dump.ts",
+    "dump:individual": "ts-node scripts/dump-individual.ts"
   },
   "repository": {
     "type": "git",
