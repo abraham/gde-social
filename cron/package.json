@@ -20,8 +20,7 @@
     "url": "https://github.com/abraham/gde-social/issues"
   },
   "homepage": "https://github.com/abraham/gde-social#readme",
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "engines": {
     "node": "6"
   },
