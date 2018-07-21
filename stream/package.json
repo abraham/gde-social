@@ -23,7 +23,7 @@
   "homepage": "https://github.com/abraham/gde-social#readme",
   "devDependencies": {
     "@types/google-cloud__pubsub": "0.18.0",
-    "@types/twit": "2.2.15",
+    "@types/twit": "2.2.16",
     "twitter-status": "0.3.0",
     "twitter-user": "0.2.2"
   },
