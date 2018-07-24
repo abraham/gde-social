@@ -25,7 +25,7 @@
     "@types/google-cloud__pubsub": "0.18.0",
     "@types/twit": "2.2.16",
     "twitter-status": "0.4.0",
-    "twitter-user": "0.2.2"
+    "twitter-user": "0.3.0"
   },
   "engines": {
     "node": "8"
