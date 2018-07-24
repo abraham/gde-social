@@ -23,7 +23,7 @@
     "@types/twit": "2.2.16",
     "tslint": "5.11.0",
     "twitter-status": "0.4.0",
-    "twitter-user": "0.2.2",
+    "twitter-user": "0.3.0",
     "typescript": "2.9.2"
   },
   "engines": {
