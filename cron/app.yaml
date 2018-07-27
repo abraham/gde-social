@@ -1,5 +1,5 @@
-runtime: nodejs
-env: flex
+runtime: nodejs8
+env: standard
 manual_scaling:
   instances: 1
 resources:
