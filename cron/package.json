@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "GDE Social cron service.",
   "scripts": {
-    "deploy": "gcloud app deploy",
+    "deploy": "gcloud app deploy cron.yaml && gcloud app deploy app.yaml",
     "start": "ts-node app.ts"
   },
   "repository": {
