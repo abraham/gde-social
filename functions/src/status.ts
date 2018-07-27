@@ -9,7 +9,7 @@ export function buildStatus(status: Status) {
     sortableHashtags[hashtag] = createdAt;
     return sortableHashtags;
   }, {});
-  const hasLinks = status.entities.urls.length > 0;
+  const hasLinks = (status.entities.urls || []).length > 0;
 
   return {
     createdAt,

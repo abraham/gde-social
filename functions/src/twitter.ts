@@ -1,9 +1,6 @@
 import * as Twit from 'twit';
-import { StatusData } from 'twitter-status/dist/status';
-import { UserData } from 'twitter-user/dist/user';
-
-export type Status = StatusData;
-export type User = UserData;
+import { Status, User } from 'twitter-d';
+export { Status };
 
 export interface TwitterCredentials {
   consumer_key: string;
@@ -52,13 +49,13 @@ export async function getListTweets(client: Twit, count: number, since_id: strin
   return t.data as Status[];
 }
 
-export async function getUserTweets(client: Twit, screen_name: string, count: number, max_id?: string): Promise<StatusData[]> {
+export async function getUserTweets(client: Twit, screen_name: string, count: number, max_id?: string): Promise<Status[]> {
   const options: Twit.Params = { ...timelineParams, screen_name, count};
   if (max_id) {
     options.max_id =  max_id;
   }
   const t = await client.get('statuses/user_timeline', options);
-  return t.data as StatusData[];
+  return t.data as Status[];
 }
 
 function buildClient(credentials: TwitterCredentials): Twit {
@@ -73,5 +70,5 @@ export function convertDate(date: string): number {
 }
 
 export function parseHashtags(status: Status): string[] {
-  return status.entities.hashtags.map(hashtag => hashtag.text.toLowerCase());
+  return (status.entities.hashtags || []).map(hashtag => hashtag.text.toLowerCase());
 }
