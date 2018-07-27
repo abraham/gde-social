@@ -33,7 +33,9 @@ footer, #intro {
 }
 
 twitter-status {
-  margin: 8px;
+  margin: 12px;
+  box-shadow: 0 3px 4px 1px rgba(0, 0, 0, .08), 0 1px 1px 1px rgba(0, 0, 0, .05);
+  border-width: 0;
 }
 
 .mdc-button {
