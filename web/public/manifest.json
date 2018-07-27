@@ -1,10 +1,51 @@
 {
   "short_name": "GDE Social",
-  "name": "Google Developer Experts Social",
-  "icons": [],
+  "name": "GDE Web Social",
+  "icons": [
+    {
+      "src": "/img/icon/source-code-24.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icon/source-code-48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icon/source-code-72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icon/source-code-96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icon/source-code-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icon/source-code-168.png",
+      "sizes": "168x168",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icon/source-code-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icon/source-code-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
   "start_url": "/",
   "background_color": "#fff",
   "display": "standalone",
   "scope": "/",
-  "theme_color": "#fff"
+  "theme_color": "#000"
 }
