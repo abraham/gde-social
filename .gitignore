@@ -3,3 +3,4 @@ node_modules
 .firebaserc
 firebase-debug.log
 lib
+stream/*.js
