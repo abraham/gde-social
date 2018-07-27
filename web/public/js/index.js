@@ -5,6 +5,7 @@ firebase.initializeApp({
 });
 
 const db = firebase.firestore();
+db.settings({ timestampsInSnapshots: true });
 
 document.addEventListener('DOMContentLoaded', () => {
   const topAppBar = new mdc.topAppBar.MDCTopAppBar(document.querySelector('.mdc-top-app-bar'));
