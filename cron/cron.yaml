@@ -1,7 +1,7 @@
 cron:
-- description: Push a "tick" onto pubsub every five minutes
-  url: /publish/five-minute-tick
-  schedule: every 5 minutes
+# - description: Push a "tick" onto pubsub every five minutes
+#   url: /publish/five-minute-tick
+#   schedule: every 5 minutes
 - description: Push a "tick" onto pubsub every fifteen minutes
   url: /publish/fifteen-minute-tick
   schedule: every 15 minutes
