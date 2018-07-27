@@ -1,6 +1,5 @@
 import * as Twit from 'twit';
-import { StatusData } from 'twitter-status/dist/status';
-import { UserData } from 'twitter-user/dist/user';
+import { Status, User } from 'twitter-d';
 import { publish } from './pubsub';
 
 const config = require('./.runtimeconfig.json').twitter;
@@ -17,9 +16,9 @@ const listParams = {
   count: 5000,
 };
 
-async function getListMembers(client: Twit): Promise<UserData[]> {
+async function getListMembers(client: Twit): Promise<User[]> {
   const t = await client.get('lists/members', listParams);
-  return (t.data as { users: UserData[]}).users;
+  return (t.data as { users: User[]}).users;
 }
 
 async function run() {
@@ -31,7 +30,7 @@ async function run() {
   const stream = T.stream('statuses/filter', { follow: userIds.join(',') } as any);
   console.log('Connected to stream');
 
-  stream.on('tweet', async (tweet: StatusData) => {
+  stream.on('tweet', async (tweet: Status) => {
     if (userIds.includes(tweet.user.id_str)) {
       const result = await publish(tweet.id_str);
       console.log(`New tweet: ${tweet.id_str}, status: ${result}`);
