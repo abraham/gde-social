@@ -30,6 +30,6 @@
     "@types/google-cloud__pubsub": "0.18.0",
     "express": "4.16.3",
     "ts-node": "7.0.0",
-    "typescript": "2.9.2"
+    "typescript": "3.0.1"
   }
 }
