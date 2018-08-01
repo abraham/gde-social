@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/abraham/gde-social#readme",
   "devDependencies": {
-    "@types/google-cloud__pubsub": "0.18.0",
+    "@types/google-cloud__pubsub": "0.18.1",
     "@types/twit": "2.2.19"
   },
   "engines": {
