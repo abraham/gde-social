@@ -25,7 +25,7 @@
     "node": "8"
   },
   "dependencies": {
-    "@google-cloud/pubsub": "0.19.0",
+    "@google-cloud/pubsub": "0.20.0",
     "@types/express": "4.16.0",
     "@types/google-cloud__pubsub": "0.18.1",
     "express": "4.16.3",
