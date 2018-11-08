@@ -4,3 +4,4 @@ node_modules
 firebase-debug.log
 lib
 stream/*.js
+package-lock.json
