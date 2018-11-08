@@ -4,6 +4,7 @@
   "description": "GDE Social stream service.",
   "scripts": {
     "deploy": "npm run build && ./scripts/deploy.sh",
+    "test": "npm run build",
     "build": "tsc",
     "restart": "gcloud compute instances reset stream",
     "start": "node app.js",
