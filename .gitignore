@@ -3,5 +3,5 @@ node_modules
 .firebaserc
 firebase-debug.log
 lib
-stream/*.js
+packages/stream/*.js
 package-lock.json

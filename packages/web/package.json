@@ -4,7 +4,8 @@
   "description": "Show tweets from GDEs.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cd functions && npm install",
+    "test": "cd functions && npm run test",
     "bearer": "ts-node scripts/bearer.ts",
     "start": "firebase serve",
     "deploy": "firebase deploy",
