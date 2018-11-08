@@ -1,5 +1,5 @@
 import { version, buildStatus } from './status';
-import { status } from '../data/status.data';
+import { status } from './data/status.data';
 
 test('version', () => {
   expect(version).toEqual(2);
