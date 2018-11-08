@@ -10,8 +10,6 @@
     "deploy": "firebase deploy",
     "deploy:functions": "firebase deploy --only functions",
     "deploy:hosting": "firebase deploy --only hosting",
-    "deploy:cron": "cd cron && npm run deploy",
-    "deploy:stream": "cd stream && npm run deploy",
     "migrate": "ts-node scripts/migrate.ts",
     "copy-data": "ts-node scripts/copy-data.ts",
     "crawl-list": "ts-node scripts/crawl-list.ts",
