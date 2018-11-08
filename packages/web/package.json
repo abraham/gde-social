@@ -4,6 +4,7 @@
   "description": "Show tweets from GDEs.",
   "main": "index.js",
   "scripts": {
+    "postinstall": "cd functions && npm install",
     "test": "cd functions && npm run test",
     "bearer": "ts-node scripts/bearer.ts",
     "start": "firebase serve",
