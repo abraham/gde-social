@@ -35,6 +35,6 @@
     "@google-cloud/pubsub": "0.24.1",
     "twit": "2.2.11",
     "twitter-d": "0.2.1",
-    "typescript": "3.3.3"
+    "typescript": "3.3.3333"
   }
 }
