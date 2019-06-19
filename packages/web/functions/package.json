@@ -16,7 +16,7 @@
   "dependencies": {
     "express": "4.17.1",
     "express-handlebars": "3.1.0",
-    "firebase-admin": "8.1.0",
+    "firebase-admin": "8.2.0",
     "firebase-functions": "3.0.1",
     "handlebars": "4.1.2",
     "twit": "2.2.11"
