@@ -38,7 +38,7 @@
     "firebase-tools": "7.7.0",
     "request": "2.88.0",
     "request-promise-native": "1.0.8",
-    "ts-node": "8.5.0",
+    "ts-node": "8.5.2",
     "typescript": "3.7.2"
   },
   "engines": {
