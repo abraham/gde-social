@@ -30,7 +30,7 @@
     "ts-jest": "24.3.0",
     "tslint": "5.20.1",
     "twitter-d": "0.2.1",
-    "typescript": "3.7.3"
+    "typescript": "3.7.4"
   },
   "engines": {
     "node": "8"
