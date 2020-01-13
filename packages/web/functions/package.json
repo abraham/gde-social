@@ -18,7 +18,7 @@
     "express-handlebars": "3.1.0",
     "firebase-admin": "8.9.0",
     "firebase-functions": "3.3.0",
-    "handlebars": "4.7.1",
+    "handlebars": "4.7.2",
     "twit": "2.2.11"
   },
   "devDependencies": {
