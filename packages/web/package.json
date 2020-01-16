@@ -39,7 +39,7 @@
     "request": "2.88.0",
     "request-promise-native": "1.0.8",
     "ts-node": "8.6.2",
-    "typescript": "3.7.4"
+    "typescript": "3.7.5"
   },
   "engines": {
     "node": "8"
