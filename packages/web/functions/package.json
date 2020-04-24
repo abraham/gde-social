@@ -17,7 +17,7 @@
     "express": "4.17.1",
     "express-handlebars": "4.0.3",
     "firebase-admin": "8.11.0",
-    "firebase-functions": "3.6.0",
+    "firebase-functions": "3.6.1",
     "handlebars": "4.7.6",
     "twit": "2.2.11"
   },
