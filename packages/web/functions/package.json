@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@types/express-handlebars": "3.1.0",
-    "@types/jest": "25.2.3",
+    "@types/jest": "26.0.0",
     "@types/twit": "2.2.24",
     "firebase-tools": "8.4.2",
     "jest": "26.0.1",
