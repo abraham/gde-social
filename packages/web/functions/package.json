@@ -27,7 +27,7 @@
     "@types/twit": "2.2.24",
     "firebase-tools": "8.4.3",
     "jest": "26.0.1",
-    "ts-jest": "26.1.0",
+    "ts-jest": "26.1.1",
     "tslint": "6.1.2",
     "twitter-d": "0.2.1",
     "typescript": "3.9.5"
