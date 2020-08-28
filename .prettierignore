@@ -1,3 +1,4 @@
 package-lock.json
-
 *.handlebars
+packages/stream/*.js
+packages/web/*.js

@@ -4,8 +4,9 @@
   "description": "Show tweets from GDEs.",
   "main": "index.js",
   "scripts": {
-    "postinstall": "cd functions && npm install",
-    "test": "cd functions && npm run test",
+    "postinstall": "npm --prefix functions install",
+    "test": "npm --prefix functions run test",
+    "lint": "npm --prefix functions run lint",
     "bearer": "ts-node scripts/bearer.ts",
     "start": "firebase serve",
     "deploy": "firebase deploy",
