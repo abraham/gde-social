@@ -13,8 +13,8 @@ async function dump() {
   while (next) {
     const snapshot = await query.get();
     const lastDocument = snapshot.docs[snapshot.docs.length - 1];
-    snapshot.docs.forEach(doc => {
-      fs.writeFile(`data/${doc.id}.json`, doc.data().data, 'ascii', error => {
+    snapshot.docs.forEach((doc) => {
+      fs.writeFile(`data/${doc.id}.json`, doc.data().data, 'ascii', (error) => {
         if (error) {
           console.log(`Error writing ${doc.id}`);
           console.log(error);
@@ -28,17 +28,17 @@ async function dump() {
     if (snapshot.docs.length === 0) {
       next = false;
     } else {
-      query = page(lastDocument)
+      query = page(lastDocument);
     }
   }
 
   console.log(`Dumped ${dumped}`);
 }
 
-function page(lastDocument?: FirebaseFirestore.QueryDocumentSnapshot): FirebaseFirestore.Query {
-  let query =  db.collection('statuses')
-    .orderBy('createdAt')
-    .limit(500);
+function page(
+  lastDocument?: FirebaseFirestore.QueryDocumentSnapshot,
+): FirebaseFirestore.Query {
+  let query = db.collection('statuses').orderBy('createdAt').limit(500);
 
   if (lastDocument) {
     query = query.startAfter(lastDocument.data().createdAt);

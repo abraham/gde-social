@@ -10,7 +10,5 @@
   },
   "types": ["@types/twitter"],
   "compileOnSave": true,
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }

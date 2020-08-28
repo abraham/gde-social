@@ -12,6 +12,6 @@ test('buildStatus', () => {
     hasLinks: false,
     hashtags: {},
     updatedAt: Date.now(),
-    version: 2
+    version: 2,
   });
 });

@@ -9,7 +9,6 @@ const T = new Twit({
   strictSSL: true,
 } as Twit.Options); // TODO: remove 'as Twit.Options'
 
-
 const listParams = {
   slug: 'web-gdes',
   owner_screen_name: 'robertnyman',
@@ -18,16 +17,18 @@ const listParams = {
 
 async function getListMembers(client: Twit): Promise<User[]> {
   const t = await client.get('lists/members', listParams);
-  return (t.data as { users: User[]}).users;
+  return (t.data as { users: User[] }).users;
 }
 
 async function run() {
   console.log('Running');
   const users = await getListMembers(T);
-  const userIds = users.map(user => user.id_str);
+  const userIds = users.map((user) => user.id_str);
   console.log(`Got ${userIds.length} list members`);
   // TODO: remove `as any`
-  const stream = T.stream('statuses/filter', { follow: userIds.join(',') } as any);
+  const stream = T.stream('statuses/filter', {
+    follow: userIds.join(','),
+  } as any);
   console.log('Connected to stream');
 
   stream.on('tweet', async (tweet: Status) => {

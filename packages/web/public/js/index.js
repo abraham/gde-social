@@ -8,26 +8,36 @@ const db = firebase.firestore();
 db.settings({ timestampsInSnapshots: true });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const topAppBar = new mdc.topAppBar.MDCTopAppBar(document.querySelector('.mdc-top-app-bar'));
-  const topAppBarNavigation = document.querySelector('.mdc-top-app-bar__navigation-icon');
+  const topAppBar = new mdc.topAppBar.MDCTopAppBar(
+    document.querySelector('.mdc-top-app-bar'),
+  );
+  const topAppBarNavigation = document.querySelector(
+    '.mdc-top-app-bar__navigation-icon',
+  );
 
   const drawerPersistent = window.innerWidth > 825;
   const drawerElement = document.querySelector('.mdc-drawer');
-  const drawerCssClass = drawerPersistent ? 'mdc-drawer--persistent' : 'mdc-drawer--temporary';
-  const drawerClass = drawerPersistent ? mdc.drawer.MDCPersistentDrawer : mdc.drawer.MDCTemporaryDrawer;
+  const drawerCssClass = drawerPersistent
+    ? 'mdc-drawer--persistent'
+    : 'mdc-drawer--temporary';
+  const drawerClass = drawerPersistent
+    ? mdc.drawer.MDCPersistentDrawer
+    : mdc.drawer.MDCTemporaryDrawer;
   drawerElement.classList.add(drawerCssClass);
   const drawer = new drawerClass(drawerElement);
   if (drawerPersistent) {
     drawer.open = drawerPersistent;
   }
 
-  topAppBarNavigation.addEventListener('click', event => {
+  topAppBarNavigation.addEventListener('click', (event) => {
     event.preventDefault();
     drawer.open = !drawer.open;
   });
 
   const btn = new LoadMore(document.querySelector('#load-more'));
-  document.querySelector('#load-more').addEventListener('click', () => btn.loadNext());
+  document
+    .querySelector('#load-more')
+    .addEventListener('click', () => btn.loadNext());
 
   btn.stream();
 });
@@ -75,20 +85,19 @@ class LoadMore {
     if (route === 'index') {
       query = query.orderBy('createdAt', 'asc');
     } else if (route === 'links') {
-      query = query.orderBy('createdAt', 'asc')
-        .where('hasLinks', '==', true);
+      query = query.orderBy('createdAt', 'asc').where('hasLinks', '==', true);
     } else {
-      query = query.where(`hashtags.${route}`, '>', 0)
+      query = query
+        .where(`hashtags.${route}`, '>', 0)
         .orderBy(`hashtags.${route}`, 'asc');
     }
 
-    query.startAfter(this.newestCreatedAt)
-      .onSnapshot(function(snapshot) {
-        snapshot.docChanges().forEach((change) => {
-          if (change.type === 'added') {
-            prependStatus(change.doc.data().data);
-          }
-        });
+    query.startAfter(this.newestCreatedAt).onSnapshot(function (snapshot) {
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === 'added') {
+          prependStatus(change.doc.data().data);
+        }
+      });
     });
   }
 
@@ -98,7 +107,7 @@ class LoadMore {
     }
     this.loading = true;
     const statuses = await this.statuses(this.route);
-    statuses.forEach(status => {
+    statuses.forEach((status) => {
       appendStatus(status.data);
     });
     if (statuses.length > 0) {
@@ -126,26 +135,29 @@ class LoadMore {
   }
 
   set oldestCreatedAt(createdAt) {
-    return this.btn.dataset.oldestCreatedAt = createdAt;
+    return (this.btn.dataset.oldestCreatedAt = createdAt);
   }
 
   async statuses(route) {
     let query = this.collection.limit(25);
 
     if (route === 'index') {
-      query = query.orderBy('createdAt', 'desc')
+      query = query
+        .orderBy('createdAt', 'desc')
         .startAfter(this.oldestCreatedAt);
     } else if (route === 'links') {
-      query = query.orderBy('createdAt', 'desc')
+      query = query
+        .orderBy('createdAt', 'desc')
         .where('hasLinks', '==', true)
         .startAfter(this.oldestCreatedAt);
     } else {
-      query = query.where(`hashtags.${route}`, '>', 0)
+      query = query
+        .where(`hashtags.${route}`, '>', 0)
         .orderBy(`hashtags.${route}`, 'desc')
         .startAfter(this.oldestCreatedAt);
     }
 
     const snaps = await query.get();
-    return snaps.docs.map(snap => snap.data());
+    return snaps.docs.map((snap) => snap.data());
   }
 }

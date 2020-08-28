@@ -18,17 +18,17 @@ async function count() {
     if (snapshot.docs.length === 0) {
       next = false;
     } else {
-      query = page(lastDocument)
+      query = page(lastDocument);
     }
   }
 
   console.log(`Counted ${counted}`);
 }
 
-function page(lastDocument?: FirebaseFirestore.QueryDocumentSnapshot): FirebaseFirestore.Query {
-  let query =  db.collection('statuses')
-    .orderBy('createdAt')
-    .limit(500);
+function page(
+  lastDocument?: FirebaseFirestore.QueryDocumentSnapshot,
+): FirebaseFirestore.Query {
+  let query = db.collection('statuses').orderBy('createdAt').limit(500);
 
   if (lastDocument) {
     query = query.startAfter(lastDocument.data().createdAt);

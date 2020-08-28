@@ -23,7 +23,11 @@ async function crawl() {
     while (next) {
       request++;
       const tweets = await twitter.getUserTweets(user.screen_name, 200, lastId);
-      console.log(`Getting ${tweets.length} tweets from ${user.screen_name} [index: ${users.indexOf(user)}, request: ${request}]`);
+      console.log(
+        `Getting ${tweets.length} tweets from ${
+          user.screen_name
+        } [index: ${users.indexOf(user)}, request: ${request}]`,
+      );
 
       const batch = db.batch();
       for (const tweet of tweets) {
@@ -32,7 +36,6 @@ async function crawl() {
         batch.set(doc, buildStatus(tweet));
       }
       await batch.commit();
-
 
       if (tweets.length <= 1) {
         next = false;
