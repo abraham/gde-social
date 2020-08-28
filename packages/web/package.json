@@ -1,23 +1,24 @@
 {
-  "name": "gde-social",
+  "name": "web",
   "version": "1.0.0",
   "description": "Show tweets from GDEs.",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npm --prefix functions install",
-    "test": "npm --prefix functions run test",
-    "lint": "npm --prefix functions run lint",
     "bearer": "ts-node scripts/bearer.ts",
-    "start": "firebase serve",
-    "deploy": "firebase deploy",
+    "build": "npm --prefix functions run build",
+    "copy-data": "ts-node scripts/copy-data.ts",
+    "count": "ts-node scripts/count.ts",
+    "crawl-list": "ts-node scripts/crawl-list.ts",
     "deploy:functions": "firebase deploy --only functions",
     "deploy:hosting": "firebase deploy --only hosting",
-    "migrate": "ts-node scripts/migrate.ts",
-    "copy-data": "ts-node scripts/copy-data.ts",
-    "crawl-list": "ts-node scripts/crawl-list.ts",
-    "count": "ts-node scripts/count.ts",
+    "deploy": "firebase deploy",
+    "dump:individual": "ts-node scripts/dump-individual.ts",
     "dump": "ts-node scripts/dump.ts",
-    "dump:individual": "ts-node scripts/dump-individual.ts"
+    "lint": "npm --prefix functions run lint",
+    "migrate": "ts-node scripts/migrate.ts",
+    "postinstall": "npm --prefix functions install",
+    "start": "firebase serve",
+    "test": "npm --prefix functions run test"
   },
   "repository": {
     "type": "git",
@@ -44,5 +45,6 @@
   },
   "engines": {
     "node": "8"
-  }
+  },
+  "private": true
 }
