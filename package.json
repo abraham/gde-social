@@ -4,7 +4,7 @@
   "scripts": {
     "build": "lerna run build",
     "fix": "prettier --write .",
-    "lint": "prettier --check .",
+    "lint": "prettier --check . && lerna run lint",
     "postinstall": "lerna bootstrap --no-ci",
     "test": "lerna run test"
   },
