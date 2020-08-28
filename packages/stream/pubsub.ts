@@ -1,7 +1,7 @@
-import * as PubSub from '@google-cloud/pubsub';
+import { PubSub, Topic } from '@google-cloud/pubsub';
 
 const projectId = process.env.GCLOUD_PROJECT_ID;
-const pubsub = PubSub({
+const pubsub = new PubSub({
   projectId,
 });
 
@@ -12,24 +12,20 @@ export async function publish(statusId: string): Promise<boolean> {
 }
 
 async function getTopicAndPublish(topicName: string, statusId: string) {
-  const publisher = await getPublisher(topicName);
+  const publisher = await getTopic(topicName);
   const data = Buffer.from(JSON.stringify({ statusId }));
   return publisher.publish(data).catch(() => {
     return createTopic(topicName)
-      .then(() => getPublisher(topicName))
+      .then(() => getTopic(topicName))
       .then((publisher) => publisher.publish(data));
   });
 }
 
-async function getPublisher(topicName: string): Promise<PubSub.Publisher> {
-  return getTopic(topicName).then((topic) => topic.publisher());
-}
-
-async function getTopic(topicName: string): Promise<PubSub.Topic> {
+async function getTopic(topicName: string): Promise<Topic> {
   return pubsub.topic(topicName);
 }
 
-async function createTopic(topicName: string): Promise<PubSub.Topic> {
-  await pubsub.createTopic(topicName);
-  return getTopic(topicName);
+async function createTopic(topicName: string): Promise<Topic> {
+  const [topic] = await pubsub.createTopic(topicName);
+  return topic;
 }
