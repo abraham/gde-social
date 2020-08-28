@@ -5,6 +5,14 @@ test('version', () => {
   expect(version).toEqual(2);
 });
 
+beforeEach(() => {
+  jest.spyOn(global.Date, 'now').mockImplementation(() => 123456789);
+});
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
 test('buildStatus', () => {
   expect(buildStatus(status)).toEqual({
     createdAt: 1142974214000,
