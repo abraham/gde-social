@@ -1,15 +1,15 @@
 {
   "name": "functions",
   "scripts": {
-    "lint": "tslint --project tsconfig.json",
-    "test": "jest",
     "build": "tsc",
+    "deploy": "firebase deploy --only functions",
+    "dump:runtimeconfig": "firebase functions:config:get > .runtimeconfig.json",
+    "lint": "tslint --project tsconfig.json",
+    "logs": "firebase functions:log",
     "serve": "npm run build && firebase serve --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log",
-    "dump:runtimeconfig": "firebase functions:config:get > .runtimeconfig.json"
+    "test": "jest"
   },
   "main": "lib/index.js",
   "dependencies": {
@@ -39,5 +39,6 @@
     "testMatch": [
       "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
     ]
-  }
+  },
+  "private": true
 }

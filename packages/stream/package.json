@@ -1,14 +1,14 @@
 {
-  "name": "gde-social-stream",
+  "name": "stream",
   "version": "1.0.0",
   "description": "GDE Social stream service.",
   "scripts": {
-    "deploy": "npm run build && ./scripts/deploy.sh",
-    "test": "npm run build",
     "build": "tsc",
+    "deploy": "npm run build && ./scripts/deploy.sh",
+    "provision": "./scripts/provision.sh",
     "restart": "gcloud compute instances reset stream",
     "start": "node app.js",
-    "provision": "./scripts/provision.sh"
+    "test": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -36,5 +36,6 @@
     "twit": "2.2.11",
     "twitter-d": "0.4.0",
     "typescript": "4.0.2"
-  }
+  },
+  "private": true
 }
