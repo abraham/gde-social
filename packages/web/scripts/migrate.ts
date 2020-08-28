@@ -17,7 +17,7 @@ async function migrate() {
     console.log(`Updating ${snapshot.docs.length} documents`);
 
     const batch = db.batch();
-    snapshot.forEach(document => {
+    snapshot.forEach((document) => {
       migrated++;
       batch.set(document.ref, buildStatus(JSON.parse(document.data().data)));
     });
@@ -26,22 +26,28 @@ async function migrate() {
     if (snapshot.docs.length === 0) {
       next = false;
     } else {
-      query = page(lastDocument)
+      query = page(lastDocument);
     }
   }
 
   console.log(`Migrated ${migrated}`);
 }
 
-function page(lastDocument?: FirebaseFirestore.QueryDocumentSnapshot): FirebaseFirestore.Query {
-  let query =  db.collection('statuses')
+function page(
+  lastDocument?: FirebaseFirestore.QueryDocumentSnapshot,
+): FirebaseFirestore.Query {
+  let query = db
+    .collection('statuses')
     .orderBy('version')
     .orderBy('createdAt')
     .where('version', '<', version)
     .limit(500);
 
   if (lastDocument) {
-    query = query.startAfter(lastDocument.data().version, lastDocument.data().createdAt);
+    query = query.startAfter(
+      lastDocument.data().version,
+      lastDocument.data().createdAt,
+    );
   }
 
   return query;
