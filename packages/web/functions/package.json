@@ -24,7 +24,7 @@
     "@types/express-handlebars": "3.1.0",
     "@types/jest": "26.0.14",
     "@types/twit": "2.2.28",
-    "firebase-tools": "8.11.0",
+    "firebase-tools": "8.11.1",
     "jest": "26.4.2",
     "ts-jest": "26.4.0",
     "tslint": "6.1.3",
