@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "gde-social",
   "private": true,
   "scripts": {
     "build": "lerna run build",
