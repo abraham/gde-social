@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/abraham/gde-social#readme",
   "devDependencies": {
-    "@types/twit": "2.2.28"
+    "@types/twit": "2.2.29"
   },
   "engines": {
     "node": "12"
