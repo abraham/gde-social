@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/abraham/gde-social#readme",
   "devDependencies": {
-    "@types/request-promise-native": "1.0.17",
+    "@types/request-promise-native": "1.0.18",
     "firebase-admin": "9.10.0",
     "firebase-tools": "9.14.0",
     "request": "2.88.2",
