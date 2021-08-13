@@ -37,7 +37,7 @@
   "devDependencies": {
     "@types/request-promise-native": "1.0.18",
     "firebase-admin": "9.11.0",
-    "firebase-tools": "9.16.0",
+    "firebase-tools": "9.16.3",
     "request": "2.88.2",
     "request-promise-native": "1.0.9",
     "ts-node": "10.2.0",
