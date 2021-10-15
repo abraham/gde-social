@@ -21,7 +21,7 @@
     "twit": "2.2.11"
   },
   "devDependencies": {
-    "@types/express-handlebars": "3.1.0",
+    "@types/express-handlebars": "5.3.1",
     "@types/jest": "26.0.15",
     "@types/twit": "2.2.28",
     "firebase-tools": "8.15.1",
