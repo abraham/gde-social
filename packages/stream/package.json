@@ -28,7 +28,8 @@
     "@types/twit": "2.2.30"
   },
   "engines": {
-    "node": "12"
+    "node": "16",
+    "npm": "7"
   },
   "dependencies": {
     "@google-cloud/pubsub": "2.18.1",
