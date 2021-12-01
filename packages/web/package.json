@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Show tweets from GDEs.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "bearer": "ts-node scripts/bearer.ts",
     "build": "npm --prefix functions run build",
@@ -35,11 +36,9 @@
   },
   "homepage": "https://github.com/abraham/gde-social#readme",
   "devDependencies": {
-    "@types/request-promise-native": "1.0.18",
     "firebase-admin": "10.0.0",
     "firebase-tools": "9.23.0",
-    "request": "2.88.2",
-    "request-promise-native": "1.0.9",
+    "node-fetch": "^3.1.0",
     "ts-node": "10.4.0",
     "typescript": "4.5.2"
   },
