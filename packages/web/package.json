@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/abraham/gde-social#readme",
   "devDependencies": {
-    "firebase-admin": "10.0.1",
+    "firebase-admin": "10.0.2",
     "firebase-tools": "10.0.1",
     "node-fetch": "^3.1.0",
     "ts-node": "10.4.0",
