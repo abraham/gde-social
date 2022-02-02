@@ -1,5 +1,5 @@
 import * as express from 'express';
-import * as exphbs from 'express-handlebars';
+import { engine } from 'express-handlebars';
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import { activatedClass as mdcActivatedClass } from './mdc';
@@ -23,7 +23,7 @@ const suggestedHashtags = [
 app.set('view engine', 'handlebars');
 app.engine(
   'handlebars',
-  exphbs({
+  engine({
     defaultLayout: 'index',
     helpers: { mdcActivatedClass },
   }),
