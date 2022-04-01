@@ -14,7 +14,7 @@
   "main": "lib/index.js",
   "dependencies": {
     "express": "4.17.3",
-    "express-handlebars": "6.0.2",
+    "express-handlebars": "6.0.3",
     "firebase-admin": "10.0.2",
     "firebase-functions": "3.19.0",
     "handlebars": "4.7.7",
