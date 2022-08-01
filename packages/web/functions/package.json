@@ -23,7 +23,7 @@
   "devDependencies": {
     "@types/jest": "28.1.6",
     "@types/twit": "2.2.30",
-    "firebase-tools": "11.2.0",
+    "firebase-tools": "11.4.0",
     "jest": "28.1.2",
     "ts-jest": "28.0.7",
     "tslint": "6.1.3",
