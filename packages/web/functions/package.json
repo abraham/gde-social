@@ -21,7 +21,7 @@
     "twit": "2.2.11"
   },
   "devDependencies": {
-    "@types/jest": "29.0.0",
+    "@types/jest": "29.1.1",
     "@types/twit": "2.2.30",
     "firebase-tools": "11.9.0",
     "jest": "28.1.3",
