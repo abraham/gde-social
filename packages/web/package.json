@@ -37,7 +37,7 @@
   "homepage": "https://github.com/abraham/gde-social#readme",
   "devDependencies": {
     "firebase-admin": "11.5.0",
-    "firebase-tools": "11.22.0",
+    "firebase-tools": "11.24.0",
     "node-fetch": "^3.2.0",
     "ts-node": "10.9.1",
     "typescript": "4.9.5"
