@@ -9,7 +9,7 @@
     "test": "lerna run test"
   },
   "devDependencies": {
-    "lerna": "6.5.1",
+    "lerna": "6.6.1",
     "prettier": "2.8.7"
   },
   "engines": {
