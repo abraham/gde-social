@@ -32,7 +32,7 @@
     "npm": "7"
   },
   "dependencies": {
-    "@google-cloud/pubsub": "3.4.1",
+    "@google-cloud/pubsub": "3.7.0",
     "twit": "2.2.11",
     "twitter-d": "0.6.0",
     "typescript": "5.0.4"
